@@ -1,0 +1,72 @@
+#include <iostream>
+
+#include <cmath>
+
+using namespace std;
+
+
+double distance(int x1, int y1, int x2, int y2) {
+
+double dist;
+
+dist = sqrt(pow(x2-x1,2)+pow(y2-y1,2));
+
+return(dist);
+
+}
+
+double radius(int x1, int y1, int x2, int y2) {
+
+double r = distance(x1,y1,x2,y2);
+
+return(r);
+
+}
+
+double circumference(double radius) {
+
+double c = 2 * 3.1416 * radius;
+
+return(c);
+
+}
+
+double area(double radius) {
+
+double a = 3.1416 * radius * radius;
+
+return(a);
+
+}
+
+int main() {
+
+int x1,y1,x2,y2;
+
+cout<<"\nEnter the center of the circle : ";
+
+cin>>x1>>y1;
+
+cout<<"\nEnter the point on the circle : ";
+
+cin>>x2>>y2;
+
+double r = radius(x1,y1,x2,y2);
+
+double c = circumference(r);
+
+double a = area(r);
+
+cout<<"\nRadius of circle : "<<r;
+
+cout<<"\nCircumference of circle : "<<c;
+
+cout<<"\nArea of circle : "<<a;
+
+cout<<"\n";
+
+system("pause");
+
+return 0;
+
+}
