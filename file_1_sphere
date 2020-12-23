@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int main() {
+const double PI=3.14159; // Declare a constant double variable PI
+//Following 3 lines declare 3 variables as double type
+double r;
+double surf_area;
+double vol;
+cout<<"----------------------------------------"<<endl;
+// Following line prints the value of PI
+cout<<"PI=" << PI << endl;
+cout<<"----------------------------------------"<<endl;
+cout<<"Please enter the radius of the sphere:";
+//Following line reads the entered radius and assigns to the variable r
+cin>>r;
+surf_area=4*PI*r*r; //Calculating surface area of the sphere=4PIr^2;
+vol=(4*PI*r*r*r)/3;//Calculate volume of the sphere=4/3PIr^3;
+//Following two lines prints the surface area and volume of the sphere
+cout<<"----------------------------------------"<<endl;
+cout<<"Surface area of the sphere=" << surf_area << endl;
+cout<<"Volume of the sphere=" << vol << endl;
+system("pause");
+return 0;
+}
