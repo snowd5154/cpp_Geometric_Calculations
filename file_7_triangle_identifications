@@ -1,0 +1,130 @@
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cmath>
+#include <string>
+using namespace std;
+
+#define tab4 "\t\t\t\t"
+
+//Function Prototypes
+int read(int);
+int LARGEST(int, int, int);
+void acute(int, int, int);
+void right(int, int, int);
+void obtuse(int, int, int);
+string triangle(int, int, int);
+void write(int,int,int,ofstream&);
+void printheader(ofstream&);
+
+//File I/O
+ifstream inf("Triangle.in");//File must exist
+ofstream out("Triangle.out", ios::app);// to create file if it doesn't exist
+
+void printheader(ofstream& out)
+{
+    out << "\t\tTriangle Program\n"
+        << "Angles of the Triangle \t Type of Triangle\n";
+}
+
+int read(ifstream &inf)
+{
+    int a;
+    inf >> a;
+    return a;
+}
+
+string triangle(int a, int b, int c)
+{
+    if(((a+b)>c) || ((c+b)>a) || ((c+a)>b))
+    {
+        out << endl <<tab4<< "Valid Triangle";
+        int max=LARGEST(a,b,c);
+        int min = (max==c) ? (a<b) ? a : b : (max==b) ? (a<c) ? a : c : (b<c) ? b : c;
+        int mid=(a+b+c)-(max+min);
+        right(min,mid,max);
+        acute(min,mid,max);
+        obtuse(min,mid,max);
+    }
+    else
+    {
+        out << endl <<tab4<< "Not a Valid Triangle";
+    }    
+    return ""; 
+}
+
+void right(int a, int b, int c)
+{
+    if(pow(c,2) == (pow(a,2) + pow(b,2)))
+    {
+        out<<endl<<tab4<<"This is a right triangle";
+    }
+    else
+    {
+        out<<endl<<tab4<<"This is not a right triangle";
+        //triangle(a,b,c);
+    }
+}
+
+void acute(int a, int b, int c)
+{
+    if(pow(c,2) < (pow(a,2) + pow(b,2)))
+    {
+        out << endl<<tab4 << "Acute Triangle";
+    }
+    else
+    {
+        out << endl<<tab4 << "Not Acute";
+        //triangle(a,b,c);
+    }
+}
+
+void obtuse(int a, int b, int c)
+{
+    if(pow(c,2) > (pow(a,2) + pow(b,2)))
+    {
+        out << endl<<tab4 << "Obtuse Triangle";
+    }
+    else
+    {
+        out << endl<<tab4 << "Not Obtuse";
+        //triangle(a,b,c);
+    }
+}
+
+int LARGEST(int a, int b, int c)
+{
+    return max(max(a,b),c);
+}
+
+void write(int a, int b, int c, ofstream& out)
+{
+    out << " " << a << " x " << b << " x " << c
+        << " " << triangle(a,b,c) << endl;
+}
+
+int main()
+{
+    int a, b, c;
+    bool valid;
+
+    printheader(out);
+    while(!(inf>>std::ws).eof())//notice the change here
+    {
+        //c=LARGEST(a,b,c);
+        a=read(inf);
+        b=read(inf);
+        c=read(inf);
+        cout<<a<<" "<<b<<" "<<c<<endl;
+        /*
+        valid=triangle(a,b,c);
+        right(a,b,c);
+        acute(a,b,c);
+        obtuse(a,b,c);
+        */
+        write(a,b,c,out);
+        cout<<"next"<<endl;
+    }
+    system("pause");
+return 0;
+}
