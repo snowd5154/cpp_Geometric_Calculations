@@ -1,0 +1,122 @@
+#include <iostream>
+
+using namespace std;
+
+class lineType
+{
+public:  
+lineType();
+   lineType(double a,double b,double c)
+   {  
+  
+   }
+   ~lineType();
+  
+   friend ostream &operator<<( ostream &output, const lineType &L );
+  
+   friend istream &operator>>( istream &input, lineType &L );
+  
+   void operator=(const lineType &L );
+   bool operator+(const lineType &L);
+   bool operator-(const lineType &L);
+   bool operator==(const lineType &L);
+   bool operator||(const lineType &L);
+   bool operator&&(const lineType &L);
+  
+private:
+double a;
+   double b;
+   double c;
+}
+
+LineType.cpp
+
+class lineType
+{
+lineType()
+{
+a=0;
+b=0;
+c=0;
+}
+  
+   lineType(double a,double b,double c)
+   {  
+       a=a;
+       b=b;
+       c=c;
+   }
+  
+   friend ostream lineType::&operator<<( ostream &output, const lineType &L )
+   {
+output << "a : " << L.a << " b : " << L.b <<"c : "<<L.c;
+return output;
+}
+
+friend istream lineType::&operator>>( istream &input, lineType &L )
+{
+input >> L.a >> L.b >>L.c;
+return input;
+}
+   void lineType::operator=(const lineType &L )
+   {
+a = L.a;
+b = L.b;
+c = L.c;
+}
+
+bool lineType::operator+(const lineType &L)
+{
+   return (b==0);
+}
+
+bool lineType::operator-(const lineType &L)
+{
+   return (a==0);
+}
+
+bool lineType::operator==(const lineType &L)
+{
+   double slope=(a/b);
+   double intercept=(c/b);
+
+   return (slope==(L.a/L.b) && intercept==(L.c/L.b));
+}
+
+bool lineType::operator||(const lineType &L)
+{
+   if(b==0 && L.b==0)
+   {
+       return true;
+   }
+   else if(b==0 && L.b!=0 || L.b==0 && b!=0)
+   {
+       return false;
+   }
+   return ((a/b)==(L.a/L.b));
+}
+
+bool lineType::operator&&(const lineType &L)
+{
+   if(b==0 && L.b==0)
+   {
+       return false;
+   }
+   if (b==0 || L.b==0)
+   {
+       if(b==0 && L.a==0)
+       {
+           return true;
+       }
+       else if(L.b==0 && a==0)
+       {
+           return true;
+       }
+
+   }
+   else
+   {
+       return(((a/b)*(L.a/L.b))==-1);
+   }
+}
+};
